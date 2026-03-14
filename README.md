@@ -24,7 +24,10 @@ Follow the technical details of each functionality:
 - [01 - Event Ingestion Contract](./docs/01-event-ingestion-contract.md)
 
 ## 🚀 Roadmap & Features
-- [ ] **Feature 01**: Event Ingestion Contract (Starting)
+- [x] **Feature 01**: Event Ingestion Contract
+    - Status: Completed
+    - Approach: Minimal API with Route Grouping and imutable DTOs (`record struct`).
+    - Tests: Contract validation and GUID integrity.
 - [ ] **Feature 02**: RabbitMQ Integration (Outbox Pattern)
 - [ ] **Feature 03**: Worker Service & Asynchronous Processing
 - [ ] **Feature 04**: Persistência com EF Core & Idempotência (Redis)
