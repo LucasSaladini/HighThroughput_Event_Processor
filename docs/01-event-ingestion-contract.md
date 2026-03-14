@@ -24,6 +24,8 @@ To maximize the throughput, **Minimal APIs** from .NET 10 will be used with a st
 - **Route**: `/api/v1/events`
 - **Response**: `202 Accepted` (Indicates that the event was received and queued for processing, but not necessarily processed yet)
 
+**Implementation Note**: Opted to use Minimal APIs to ensure the minimal possible overhead on execution pipeline using `readonly record struct` to reduce memory allocation (GC Pressure) during the receiving of payloads.
+
 ## ✅ Acceptance Criteria (Definition of Done)
 
 1. **Schema Validation**: The endpoint must return `400 Bad Request` if the `Id` or the `Timestamp` are missing or invalid.
