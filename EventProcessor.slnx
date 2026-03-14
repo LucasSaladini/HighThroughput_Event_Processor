@@ -1,5 +1,14 @@
 <Solution>
-  <Project Path="EventProcessor.Core/EventProcessor.Core.csproj" />
-  <Project Path="EventProcessor.Ingestion.Api/EventProcessor.Ingestion.Api.csproj" />
-  <Project Path="EventProcessor.Worker/EventProcessor.Worker.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/EventProcessor.Application/EventProcessor.Application.csproj" />
+    <Project Path="src/EventProcessor.Core/EventProcessor.Core.csproj" />
+    <Project Path="src/EventProcessor.Domain/EventProcessor.Domain.csproj" />
+    <Project Path="src/EventProcessor.Infrastructure/EventProcessor.Infrastructure.csproj" />
+    <Project Path="src/EventProcessor.Ingestion.Api/EventProcessor.Ingestion.Api.csproj" />
+    <Project Path="src/EventProcessor.Worker/EventProcessor.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EventProcessor.IntegrationTests/EventProcessor.IntegrationTests.csproj" />
+    <Project Path="tests/EventProcessor.UnitTests/EventProcessor.UnitTests.csproj" />
+  </Folder>
 </Solution>

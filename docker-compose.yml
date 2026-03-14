@@ -1,31 +1,63 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: ep-messaging
+    restart: always
     ports:
-      - "5672: 5672"    # AMQP
-      - "15672: 15672"  # Management UI
+      - "5672:5672"
+      - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres:
     image: postgres:latest
+    container_name: ep-database
+    restart: always
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: event_db
     ports:
-      - "5432: 5432"
-  
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d event_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   redis:
     image: redis:alpine
+    container_name: ep-cache
+    restart: always
     ports:
-      - "6379: 6379"
-  
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   seq:
     image: datalust/seq:latest
+    container_name: ep-logging
+    restart: always
     environment:
       ACCEPT_EULA: Y
     ports:
-      - "5341:80"   # UI for Logs
-    
+      - "5341:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  postgres_data:
