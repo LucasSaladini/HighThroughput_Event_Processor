@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="EventProcessor.Core/EventProcessor.Core.csproj" />
+  <Project Path="EventProcessor.Ingestion.Api/EventProcessor.Ingestion.Api.csproj" />
+  <Project Path="EventProcessor.Worker/EventProcessor.Worker.csproj" />
+</Solution>
